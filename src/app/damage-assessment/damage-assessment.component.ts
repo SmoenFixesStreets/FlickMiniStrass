@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Damage} from '../damage';
 import {MockDamageService} from '../mock-damage.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-damage-assessment',
@@ -12,7 +13,7 @@ export class DamageAssessmentComponent implements OnInit {
 
   damageForm: FormGroup = new FormGroup({});
 
-  constructor(private mockDamageService: MockDamageService) { }
+  constructor(private mockDamageService: MockDamageService, private router:Router) { }
 
   ngOnInit() {
     this.damageForm = new FormGroup({
@@ -33,6 +34,7 @@ export class DamageAssessmentComponent implements OnInit {
   submitDamage(){
     let damage = new Damage(this.damageForm.value);
     this.mockDamageService.addDamage(damage);
+    this.router.navigate(['../damages'])
 
   }
 

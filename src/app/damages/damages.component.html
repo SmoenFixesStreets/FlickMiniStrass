@@ -13,6 +13,6 @@
     </div>
   </div>
   <div class="col s8" style="padding-right: 0">
-    <app-map [damages]="getDamages()" (mapClick)="this.damage = ($event.damage)"></app-map>
+    <app-map [damages]="getDamages()" (damageSelected)="changeDamage($event)"></app-map>
   </div>
 </div>

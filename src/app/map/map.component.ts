@@ -34,14 +34,18 @@ export class MapComponent implements OnInit {
     if (this.damages) {
       this.damages.forEach(damage => {
         console.log(damage);
-        this.layers.push(marker([damage.lat, damage.long], {
+        let markerInst = marker([damage.lat, damage.long], {
           icon: icon({
             iconSize: [25, 41],
             iconAnchor: [13, 41],
             iconUrl: 'assets/marker-icon.png',
             shadowUrl: 'assets/marker-shadow.png'
           })
-        }));
+        });
+        markerInst.on('click', ($event) => {
+          this.damageSelected.emit(damage);
+        });
+        this.layers.push(markerInst);
       });
     }
   }

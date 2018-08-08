@@ -5,25 +5,25 @@
     <form [formGroup]="damageForm" style="margin-top: 30px">
       <div class="input-field">
         <input placeholder="Wählen Sie einen Titel..." id="title" type="text" formControlName="title" class="validate">
-        <label for="title">Titel</label>
+        <label class="active" for="title">Titel</label>
       </div>
 
       <div class="input-field">
         <textarea id="description" formControlName="description" class="materialize-textarea" placeholder="Beschreiben Sie den Schaden... "></textarea>
-        <label for="description">Beschreibung</label>
+        <label class="active" for="description">Beschreibung</label>
       </div>
 
         <div class="col s6" style="padding-left: 0">
           <div class="input-field">
             <input placeholder="Klicken Sie auf die Karte..." id="lat" type="text" formControlName="lat" disabled="disabled">
-            <label for="lat">Breite</label>
+            <label class="active" for="lat">Breite</label>
           </div>
         </div>
 
         <div class="col s6" style="padding-left: 0; padding-right: 0">
           <div class="input-field">
             <input placeholder="Klicken Sie auf die Karte..." id="long" type="text" formControlName="long" disabled="disabled">
-            <label for="long">Länge</label>
+            <label class="active" for="long">Länge</label>
           </div>
         </div>
 

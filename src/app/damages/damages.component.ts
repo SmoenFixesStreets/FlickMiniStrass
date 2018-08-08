@@ -20,4 +20,9 @@ export class DamagesComponent implements OnInit {
     return this.mockDamageService.getDamages();
   }
 
+  changeDamage(event){
+    console.log(event);
+    this.damage = new Damage(event);
+  }
+
 }
