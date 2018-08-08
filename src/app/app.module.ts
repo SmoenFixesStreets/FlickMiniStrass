@@ -9,6 +9,10 @@ import { MapComponent } from './map/map.component';
 import { MaterializeModule } from 'angular2-materialize';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import {ReactiveFormsModule} from '@angular/forms';
+import {MockDamageService} from './mock-damage.service';
+import {MapitService} from './mapit.service';
+import {RouterModule} from '@angular/router';
+import {AppRoutingModule} from './app-routing.module';
 
 
 @NgModule({
@@ -21,9 +25,11 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     MaterializeModule,
     LeafletModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [MockDamageService, MapitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

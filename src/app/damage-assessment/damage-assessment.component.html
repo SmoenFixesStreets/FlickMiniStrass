@@ -9,7 +9,7 @@
       </div>
 
       <div class="input-field">
-        <textarea id="description" class="materialize-textarea" placeholder="Beschreiben Sie den Schaden... "></textarea>
+        <textarea id="description" formControlName="description" class="materialize-textarea" placeholder="Beschreiben Sie den Schaden... "></textarea>
         <label for="description">Beschreibung</label>
       </div>
 
@@ -27,6 +27,7 @@
           </div>
         </div>
 
+      <button class="btn btn-success" [disabled]="!damageForm.valid" (click)="submitDamage()">Submit</button>
     </form>
   </div>
   <div class="col s8" style="padding-right: 0">
