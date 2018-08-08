@@ -1,0 +1,35 @@
+
+<div class="row" style="margin-bottom: 0">
+  <div class="col s4">
+    <h3 style="margin-top: 30px">Schadensformular</h3>
+    <form [formGroup]="damageForm" style="margin-top: 30px">
+      <div class="input-field">
+        <input placeholder="Wählen Sie einen Titel..." id="title" type="text" formControlName="title" class="validate">
+        <label for="title">Titel</label>
+      </div>
+
+      <div class="input-field">
+        <textarea id="description" class="materialize-textarea" placeholder="Beschreiben Sie den Schaden... "></textarea>
+        <label for="description">Beschreibung</label>
+      </div>
+
+        <div class="col s6" style="padding-left: 0">
+          <div class="input-field">
+            <input placeholder="Klicken Sie auf die Karte..." id="lat" type="text" formControlName="lat" disabled="disabled">
+            <label for="lat">Breite</label>
+          </div>
+        </div>
+
+        <div class="col s6" style="padding-left: 0; padding-right: 0">
+          <div class="input-field">
+            <input placeholder="Klicken Sie auf die Karte..." id="long" type="text" formControlName="long" disabled="disabled">
+            <label for="long">Länge</label>
+          </div>
+        </div>
+
+    </form>
+  </div>
+  <div class="col s8" style="padding-right: 0">
+    <app-map (mapClick)="handleMapClick($event)"></app-map>
+  </div>
+</div>
