@@ -1,0 +1,18 @@
+<div class="row" style="margin-bottom: 0">
+  <div class="col s4">
+    <h2 style="margin-top: 30px">Damage</h2>
+    <div *ngIf="damage">
+      <h4>Title</h4>
+      <p>{{damage.title}}</p>
+
+      <h4>Description</h4>
+      <p>{{damage.description}}</p>
+
+      <h4>Coordinates</h4>
+      <p>{{damage.lat}} {{damage.long}}</p>
+    </div>
+  </div>
+  <div class="col s8" style="padding-right: 0">
+    <app-map [damages]="getDamages()" (mapClick)="this.damage = ($event.damage)"></app-map>
+  </div>
+</div>

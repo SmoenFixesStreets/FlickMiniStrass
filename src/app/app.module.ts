@@ -13,13 +13,15 @@ import {MockDamageService} from './mock-damage.service';
 import {MapitService} from './mapit.service';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
+import { DamagesComponent } from './damages/damages.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DamageAssessmentComponent,
-    MapComponent
+    MapComponent,
+    DamagesComponent
   ],
   imports: [
     BrowserModule,
