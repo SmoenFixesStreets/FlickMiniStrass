@@ -14,6 +14,7 @@ import {MapitService} from './mapit.service';
 import {RouterModule} from '@angular/router';
 import {AppRoutingModule} from './app-routing.module';
 import { DamagesComponent } from './damages/damages.component';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { DamagesComponent } from './damages/damages.component';
     LeafletModule.forRoot(),
     ReactiveFormsModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [MockDamageService, MapitService],
   bootstrap: [AppComponent]

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Damage} from '../damage';
 import {MockDamageService} from '../mock-damage.service';
 import {Router} from '@angular/router';
+import {MapitService} from '../mapit.service';
 
 @Component({
   selector: 'app-damage-assessment',
@@ -12,8 +13,11 @@ import {Router} from '@angular/router';
 export class DamageAssessmentComponent implements OnInit {
 
   damageForm: FormGroup = new FormGroup({});
+  noClick: boolean = true;
+  clickedAllowedArea: boolean = false;
 
-  constructor(private mockDamageService: MockDamageService, private router:Router) { }
+  constructor(private mockDamageService: MockDamageService, private router: Router, private mapitService: MapitService) {
+  }
 
   ngOnInit() {
     this.damageForm = new FormGroup({
@@ -24,17 +28,37 @@ export class DamageAssessmentComponent implements OnInit {
     });
   }
 
-  handleMapClick(latlng){
-    this.damageForm.patchValue({
-      lat: (Math.round(latlng.lat * 1000) / 1000),
-      long: (Math.round(latlng.lng * 1000) / 1000),
+  handleMapClick(latlng) {
+    this.noClick = false;
+    this.mapitService.getAreasFor(latlng.lat, latlng.lng).subscribe((data: any) => {
+      console.log(data);
+      let allowed_ids = this.mapitService.getAllowedIds();
+      let found: boolean = false;
+      Object.keys(data).forEach(el => {
+        console.log(el);
+        if (allowed_ids.findIndex(id => {
+          console.log(id);
+            return id.toString() == el;
+          }) > -1){
+          found = true;
+        }
+      })
+      this.clickedAllowedArea = found;
+      ;
+
+      this.damageForm.patchValue({
+        lat: (Math.round(latlng.lat * 1000) / 1000),
+        long: (Math.round(latlng.lng * 1000) / 1000),
+      });
     });
+
+
   }
 
-  submitDamage(){
+  submitDamage() {
     let damage = new Damage(this.damageForm.value);
     this.mockDamageService.addDamage(damage);
-    this.router.navigate(['../damages'])
+    this.router.navigate(['../damages']);
 
   }
 

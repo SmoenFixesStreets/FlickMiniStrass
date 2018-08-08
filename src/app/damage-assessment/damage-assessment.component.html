@@ -1,34 +1,48 @@
-
 <div class="row" style="margin-bottom: 0">
   <div class="col s4">
     <h3 style="margin-top: 30px">Schadensformular</h3>
-    <form [formGroup]="damageForm" style="margin-top: 30px">
-      <div class="input-field">
-        <input placeholder="Wählen Sie einen Titel..." id="title" type="text" formControlName="title" class="validate">
-        <label class="active" for="title">Titel</label>
-      </div>
+    <div *ngIf="noClick">
+      Wählen Sie einen Ort auf der Karte...
+    </div>
+    <div *ngIf="!noClick">
+      <form [formGroup]="damageForm" style="margin-top: 30px" *ngIf="clickedAllowedArea">
+        <div class="input-field">
+          <input placeholder="Wählen Sie einen Titel..." id="title" type="text" formControlName="title"
+                 class="validate">
+          <label class="active" for="title">Titel</label>
+        </div>
 
-      <div class="input-field">
-        <textarea id="description" formControlName="description" class="materialize-textarea" placeholder="Beschreiben Sie den Schaden... "></textarea>
-        <label class="active" for="description">Beschreibung</label>
-      </div>
+        <div class="input-field">
+          <textarea id="description" formControlName="description" class="materialize-textarea"
+                    placeholder="Beschreiben Sie den Schaden... "></textarea>
+          <label class="active" for="description">Beschreibung</label>
+        </div>
 
         <div class="col s6" style="padding-left: 0">
           <div class="input-field">
-            <input placeholder="Klicken Sie auf die Karte..." id="lat" type="text" formControlName="lat" disabled="disabled">
+            <input placeholder="Klicken Sie auf die Karte..." id="lat" type="text" formControlName="lat"
+                   disabled="disabled">
             <label class="active" for="lat">Breite</label>
           </div>
         </div>
 
         <div class="col s6" style="padding-left: 0; padding-right: 0">
           <div class="input-field">
-            <input placeholder="Klicken Sie auf die Karte..." id="long" type="text" formControlName="long" disabled="disabled">
+            <input placeholder="Klicken Sie auf die Karte..." id="long" type="text" formControlName="long"
+                   disabled="disabled">
             <label class="active" for="long">Länge</label>
           </div>
         </div>
 
-      <button class="btn btn-success" [disabled]="!damageForm.valid" (click)="submitDamage()">Submit</button>
-    </form>
+        <button class="btn btn-success" [disabled]="!damageForm.valid" (click)="submitDamage()">Submit</button>
+      </form>
+
+      <div *ngIf="!clickedAllowedArea">
+        <div class="card-panel red">
+          Wir decken dieses Gebiet nicht ab.
+        </div>
+      </div>
+    </div>
   </div>
   <div class="col s8" style="padding-right: 0">
     <app-map (mapClick)="handleMapClick($event)"></app-map>
